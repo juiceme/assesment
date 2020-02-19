@@ -11,7 +11,10 @@ class RotateImage:
         if len(input_image) is not len(input_image[0]):
             print("Input image needs to be N*N square array")
             return False
-        
+
+        # the input matrix is rotated by going through the elements in spiraling
+        # fashion, each 4 sides in one go. The algorithm works on both matrices
+        # having even and odd number of rows.
         rounds = len(input_image)-1
         for i in range(int(len(input_image)/2)):
             for j in range(i, rounds-i):
@@ -21,22 +24,29 @@ class RotateImage:
                 input_image[rounds-i][rounds-j] = input_image[j][rounds-i]
                 input_image[j][rounds-i] = swap
             return True
-
-def printimage(image):
-    for x in range(len(image)):
-        for y in range(len(image)):
-            print(str(image[x][y]) + " ", end = '')
+            
+    def show(self, image):
+        for x in range(len(image)):
+            for y in range(len(image)):
+                print(str(image[x][y]) + " ", end = '')
+            print()
         print()
-    print()
 
+        
+# --- test the image rotation with two small images 
 
 a = RotateImage()
-image1 = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]
-image2 = [ [1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16] ]
-printimage(image1)
+image1 = [ [1, 2, 3],
+           [4, 5, 6],
+           [7, 8, 9] ]
+image2 = [ [1, 2, 3, 4],
+           [5, 6, 7, 8],
+           [9, 10, 11, 12],
+           [13, 14, 15, 16] ]
+
+a.show(image1)
 a.rotate(image1)
-printimage(image1)
-printimage(image2)
+a.show(image1)   
+a.show(image2)
 a.rotate(image2)
-printimage(image2)
-        
+a.show(image2)
