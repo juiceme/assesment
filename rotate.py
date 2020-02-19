@@ -12,18 +12,15 @@ class RotateImage:
             print("Input image needs to be N*N square array")
             return False
         
-        # Check whether the array is even or odd, this is needed to determine
-        # if the center pixel need to be rotated or not
-        if len(input_image) % 2 == 0:
-            rounds = len(input_image)-1
-            for i in range(int(len(input_image)/2)):
-                for j in range(i, rounds-i):
-                    swap = input_image[i][j]
-                    input_image[i][j] = input_image[rounds-j][i]
-                    input_image[rounds-j][i] = input_image[rounds-i][rounds-j]
-                    input_image[rounds-i][rounds-j] = input_image[j][rounds-i]
-                    input_image[j][rounds-i] = swap
-            return input_image
+        rounds = len(input_image)-1
+        for i in range(int(len(input_image)/2)):
+            for j in range(i, rounds-i):
+                swap = input_image[i][j]
+                input_image[i][j] = input_image[rounds-j][i]
+                input_image[rounds-j][i] = input_image[rounds-i][rounds-j]
+                input_image[rounds-i][rounds-j] = input_image[j][rounds-i]
+                input_image[j][rounds-i] = swap
+            return True
 
 def printimage(image):
     for x in range(len(image)):
@@ -32,12 +29,14 @@ def printimage(image):
         print()
     print()
 
-    
+
 a = RotateImage()
 image1 = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ]
 image2 = [ [1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16] ]
-#output1 = a.rotate(image1)
+printimage(image1)
+a.rotate(image1)
+printimage(image1)
 printimage(image2)
-output2 = a.rotate(image2)
-printimage(output2)
+a.rotate(image2)
+printimage(image2)
         
