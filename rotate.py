@@ -23,7 +23,7 @@ class RotateImage:
                 input_image[rounds-j][i] = input_image[rounds-i][rounds-j]
                 input_image[rounds-i][rounds-j] = input_image[j][rounds-i]
                 input_image[j][rounds-i] = swap
-            return True
+        return True
             
     def show(self, image):
         for x in range(len(image)):
